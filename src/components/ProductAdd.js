@@ -244,7 +244,7 @@ const ProductAdd = (props) => {
             <div className='header'>
                 <h2>Product Add</h2>
                 <div className='buttons'>
-                    <a type='submit' className={(is_submitting) ? 'disabled' : ''} value='Save' onClick={handleSubmitClicked}>Submit</a>
+                    <a type='submit' className={(is_submitting) ? 'disabled' : ''} value='Save' onClick={handleSubmitClicked}>Save</a>
                     <a onClick={() => props.setRoute('/')} >Cancel</a>
                 </div>
             </div>
