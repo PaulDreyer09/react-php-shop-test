@@ -29,7 +29,7 @@ hr {
 .header .buttons {
   display: flex;
 }
-.header .buttons a {
+.header .buttons button {
   text-align: center;
   margin: 0 10px 5px;
   padding: 0.5em 15px;
@@ -42,26 +42,26 @@ hr {
   color: #FFFFFF;
   cursor: pointer;
 }
-.header .buttons a:hover {
+.header .buttons button:hover {
   background-color: #FFFFFF;
   color: #4400ff;
 }
-.header .buttons a.disabled {
+.header .buttons button.disabled {
   background-color: #787878;
   color: #FEFEFE;
   border-color: #787878;
   pointer-events: none;
 }
-.header .buttons a.disabled :hover {
+.header .buttons button.disabled :hover {
   background-color: #787878;
 }
 
-#product_form {
+#product_form form {
   max-width: 500px;
   padding: 25px 2em;
 }
-#product_form input,
-#product_form select {
+#product_form form input,
+#product_form form select {
   min-width: 200px;
   min-height: 2em;
   padding: 2px 5px;
@@ -139,7 +139,7 @@ footer {
     display: flex;
     flex-direction: column;
   }
-  .header .buttons a {
+  .header .buttons button {
     text-align: center;
     margin: 5px;
   }

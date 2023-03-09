@@ -170,6 +170,7 @@ const ProductAdd = (props) => {
                     <label htmlFor='weight'>Weight (KG)</label>
                     <input className={formik.touched.weight && formik.errors.weight ? ' validation-error' : ''}
                         type='number'
+                        id='weight'
                         min="0"
                         name='weight'
                         {...formik.getFieldProps('weight')}
@@ -183,6 +184,7 @@ const ProductAdd = (props) => {
                 <div className='form-control'>
                     <label htmlFor='size'>Size (MB)</label>
                     <input className={formik.touched.size && formik.errors.size ? ' validation-error' : ''}
+                        id="size"
                         type='number'
                         min="0"
                         name='size'
@@ -197,6 +199,7 @@ const ProductAdd = (props) => {
                 <div className='form-control'>
                     <label htmlFor='height'>Height (CM)</label>
                     <input className={formik.touched.height && formik.errors.height ? ' validation-error' : ''}
+                        id='height'
                         type='number'
                         min="0"
                         name='height'
@@ -207,6 +210,7 @@ const ProductAdd = (props) => {
                 <div className='form-control'>
                     <label htmlFor='width'>Width (CM)</label>
                     <input className={formik.touched.width && formik.errors.width ? ' validation-error' : ''}
+                        id='width'
                         type='number'
                         min="0"
                         name='width'
@@ -217,6 +221,7 @@ const ProductAdd = (props) => {
                 <div className='form-control'>
                     <label htmlFor='length'>Length (CM)</label>
                     <input className={formik.touched.length && formik.errors.length ? ' validation-error' : ''}
+                        id='length'
                         type='number'
                         min="0"
                         name='length'
@@ -240,16 +245,16 @@ const ProductAdd = (props) => {
     }
 
     return (
-        <div className='ProductAdd'>
+        <div id="product_form" className='ProductAdd'>
             <div className='header'>
                 <h2>Product Add</h2>
                 <div className='buttons'>
-                    <a type='submit' className={(is_submitting) ? 'disabled' : ''} value='Save' onClick={handleSubmitClicked}>Save</a>
-                    <a onClick={() => props.setRoute('/')} >Cancel</a>
+                    <button type='submit' className={(is_submitting) ? '' : ''} value='Save' onClick={handleSubmitClicked}>Save</button>
+                    <button onClick={() => props.setRoute('/')} >Cancel</button>
                 </div>
             </div>
             <hr />
-            <form id="product_form" onSubmit={handleSubmitClicked}>
+            <form onSubmit={handleSubmitClicked}>
 
                 <div className='form-control'>
                     <label htmlFor="sku">Sku</label>
@@ -285,9 +290,9 @@ const ProductAdd = (props) => {
                 </div>
 
                 <div className='form-control'>
-                    <label htmlFor='product_type'>Type Switcher</label>
+                    <label htmlFor='productType'>Type Switcher</label>
                     <select className={formik.touched.product_type && formik.errors.product_type ? ' validation-error' : ''}
-                        id='product_type'
+                        id='productType'
                         name='product_type'
                         {...formik.getFieldProps('product_type')}
                     >

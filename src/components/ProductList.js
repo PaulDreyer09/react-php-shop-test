@@ -124,12 +124,12 @@ const ProductList = (props) => {
             <div className="header">
                 <h2>Product List</h2>
                 <div className='buttons'>
-                    <a onClick={() => props.setRoute('/add')} className='btn'>
+                    <button onClick={() => props.setRoute('/add')} className='btn'>
                         ADD
-                    </a>
-                    <a className={(isDeleting || selectedProducts.length === 0) ? 'disabled' : ''} onClick={handleMassDeleteClicked}>
+                    </button>
+                    <button className={/*(isDeleting || selectedProducts.length === 0) ? 'disabled' : */''} onClick={handleMassDeleteClicked}>
                         MASS DELETE
-                    </a>
+                    </button>
                 </div>
             </div>
             <hr />

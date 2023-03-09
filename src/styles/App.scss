@@ -35,7 +35,7 @@ hr{
 
     .buttons {
         display: flex;    
-        a {
+        button {
             text-align: center;
             
             margin: 0 10px 5px;
@@ -71,7 +71,7 @@ hr{
     }
 }
 
-#product_form {
+#product_form form {
     max-width: 500px;
     padding: 25px 2em;
 
@@ -165,7 +165,7 @@ footer {
         display: flex;
         flex-direction: column;
 
-        a {
+        button {
         text-align: center;
         margin: 5px;
         }

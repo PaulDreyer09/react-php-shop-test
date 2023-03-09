@@ -11,7 +11,7 @@ import React, { useState } from 'react'
 const App = () => {
   const SERVER_URL = 'https://domain.com'
   const API_LIST = {
-    products : '/api/product/'
+    products : '/api/scandiwebtest/product/'
   }
 
   const [route, setRoute] = useState('/')
