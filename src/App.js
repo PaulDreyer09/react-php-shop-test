@@ -9,9 +9,9 @@ import React, { useState } from 'react'
  * @return JSX element containing the ProductList or ProductAdd component and a horizontal line
  */
 const App = () => {
-  const SERVER_URL = 'https://pauljdreyer.com'
+  const SERVER_URL = 'https://yourwebsite.com'
   const API_LIST = {
-    products : '/api/scandiwebtest/product/'
+    products : '/api/product/'
   }
 
   const [route, setRoute] = useState('/')
