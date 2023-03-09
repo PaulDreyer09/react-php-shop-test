@@ -3,6 +3,11 @@ import ProductList from './components/ProductList';
 import ProductAdd from './components/ProductAdd';
 import React, { useState } from 'react'
 
+/**
+ * The App component renders the ProductList and ProductAdd components based on the current route.
+ * @param None
+ * @return JSX element containing the ProductList or ProductAdd component and a horizontal line
+ */
 const App = () => {
   const SERVER_URL = 'https://pauljdreyer.com'
   const API_LIST = {

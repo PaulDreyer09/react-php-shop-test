@@ -34,6 +34,7 @@ const ProductList = (props) => {
         const fetchProducts = async () => {
             await axios.get(props.api_url)
                 .then((res) => {
+                    console.log(res)
                     setProducts(res.data);
                 })
                 .catch((error) => {
