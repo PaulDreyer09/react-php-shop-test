@@ -9,7 +9,7 @@ import React, { useState } from 'react'
  * @return JSX element containing the ProductList or ProductAdd component and a horizontal line
  */
 const App = () => {
-  const SERVER_URL = 'https://yourwebsite.com'
+  const SERVER_URL = 'https://domain.com'
   const API_LIST = {
     products : '/api/product/'
   }

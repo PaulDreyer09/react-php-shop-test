@@ -95,11 +95,12 @@ const ProductList = (props) => {
                 await deleteProduct(product_sku)
                     .then(() => { deletedProducts.push(product_sku); });
             }));
-            setIsDeleting(false);
-            console.log('Successfully deleted products: \n' + deletedProducts.join(', '));
+            setIsDeleting(false);            
         } catch (error) {
             console.error(error);
             alert('Something went wrong with the delete request. Please check the console log data for more information.');
+        } finally {
+            alert('Successfully deleted products: \n' + deletedProducts.join(', '));
         }
     }
 

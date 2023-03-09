@@ -19,7 +19,7 @@ import { useFormik } from 'formik'
  */
 const validate = values => {
     const errors = {}
-    
+
     if (!values.sku) {
         errors.sku = 'Required';
     }
@@ -30,8 +30,6 @@ const validate = values => {
 
     if (!values.price) {
         errors.price = 'Required';
-    } else if (isNaN(values.price)) { // Price should be a number
-        errors.price = 'Needs to be a number';
     }
 
     if (!values.product_type) {
@@ -43,34 +41,24 @@ const validate = values => {
         case 'DVD':
             if (!values.size) {
                 errors.size = 'Required';
-            } else if (isNaN(values.size)) { // Size should be a number
-                errors.size = 'Needs to be a number';
             }
             break;
         case 'Furniture':
             if (!values.height) {
                 errors.height = 'Required';
-            } else if (isNaN(values.height)) { // Height should be a number
-                errors.height = 'Needs to be a number';
             }
 
             if (!values.width) {
                 errors.width = 'Required';
-            } else if (isNaN(values.width)) { // Width should be a number
-                errors.width = 'Needs to be a number';
             }
 
             if (!values.length) {
                 errors.length = 'Required';
-            } else if (isNaN(values.length)) { // Length should be a number
-                errors.length = 'Needs to be a number';
             }
             break;
         case 'Book':
             if (!values.weight) {
                 errors.weight = 'Required';
-            } else if (isNaN(values.weight)) { // Weight should be a number
-                errors.weight = 'Needs to be a number';
             }
             break;
         default:
@@ -104,12 +92,12 @@ const ProductAdd = (props) => {
         'Furniture'
     ]);
 
-    const onSubmit = async (input) => {
+    const onSubmit = async (input, actions) => {
         setIsSubmitting(true)
         //Conver numerical string data to number
         let data = {
             ...input,
-            price: parseFloat(input.price),
+            price: parseFloat(input.price).toFixed(2),
             size: parseFloat(input.size),
             height: parseFloat(input.height),
             width: parseFloat(input.width),
@@ -137,12 +125,13 @@ const ProductAdd = (props) => {
         })
             .then((data) => { // response data
                 setIsSubmitting(false)
-                console.log(data)
+                actions.resetForm()
+                // console.log(data)
                 if (data.status === 200) {
                     alert('Record created successfully.');
                 } else if (data.status === 409) {
                     alert('Failed to create record: Duplicate SKU supplied');
-                }else{
+                } else {
                     alert('Failed to create record.');
                 }
             })
@@ -158,7 +147,6 @@ const ProductAdd = (props) => {
             });
     }
 
-    const numberRegex = '([0-9]*[.])?[0-9]+'
     const formik = useFormik({
         initialValues: {
             sku: '',
@@ -181,10 +169,11 @@ const ProductAdd = (props) => {
                 <div className='form-control'>
                     <label htmlFor='weight'>Weight (KG)</label>
                     <input className={formik.touched.weight && formik.errors.weight ? ' validation-error' : ''}
-                        type='text'
+                        type='number'
+                        min="0"
                         name='weight'
-                        pattern={numberRegex}
-                        {...formik.getFieldProps('weight')} />
+                        {...formik.getFieldProps('weight')}
+                    />
 
                 </div>
                 <p>Please, provide weight in KG</p>
@@ -193,7 +182,12 @@ const ProductAdd = (props) => {
             <div>
                 <div className='form-control'>
                     <label htmlFor='size'>Size (MB)</label>
-                    <input className={formik.touched.size && formik.errors.size ? ' validation-error' : ''} type='text' name='size' pattern={numberRegex}  {...formik.getFieldProps('size')}></input>
+                    <input className={formik.touched.size && formik.errors.size ? ' validation-error' : ''}
+                        type='number'
+                        min="0"
+                        name='size'
+                        {...formik.getFieldProps('size')}
+                    />
 
                 </div>
                 <p>Please, provide size in MB</p>
@@ -202,17 +196,33 @@ const ProductAdd = (props) => {
             <div>
                 <div className='form-control'>
                     <label htmlFor='height'>Height (CM)</label>
-                    <input className={formik.touched.height && formik.errors.height ? ' validation-error' : ''} type='text' name='height' pattern={numberRegex}  {...formik.getFieldProps('height')}></input>
+                    <input className={formik.touched.height && formik.errors.height ? ' validation-error' : ''}
+                        type='number'
+                        min="0"
+                        name='height'
+                        {...formik.getFieldProps('height')}
+                    />
 
                 </div>
                 <div className='form-control'>
                     <label htmlFor='width'>Width (CM)</label>
-                    <input className={formik.touched.width && formik.errors.width ? ' validation-error' : ''} type='text' name='width' pattern={numberRegex}  {...formik.getFieldProps('width')}></input>
+                    <input className={formik.touched.width && formik.errors.width ? ' validation-error' : ''}
+                        type='number'
+                        min="0"
+                        name='width'
+                        {...formik.getFieldProps('width')}
+                    />
 
                 </div>
                 <div className='form-control'>
                     <label htmlFor='length'>Length (CM)</label>
-                    <input className={formik.touched.length && formik.errors.length ? ' validation-error' : ''} type='text' name='length' pattern={numberRegex}  {...formik.getFieldProps('length')}></input>
+                    <input className={formik.touched.length && formik.errors.length ? ' validation-error' : ''}
+                        type='number'
+                        min="0"
+                        name='length'
+
+                        {...formik.getFieldProps('length')}
+                    />
 
                 </div>
                 <p>Please, provide dimentions in CM</p>
@@ -263,12 +273,12 @@ const ProductAdd = (props) => {
                 </div>
 
                 <div className='form-control'>
-                    <label htmlFor="price">Price</label>
+                    <label htmlFor="price">Price ($):</label>
                     <input className={formik.touched.price && formik.errors.price ? ' validation-error' : ''}
                         id="price"
                         name="price"
-                        type="text"
-                        pattern={numberRegex}
+                        type="number"
+                        min="0"
                         {...formik.getFieldProps('price')}
                     />
 
@@ -290,7 +300,7 @@ const ProductAdd = (props) => {
                 </div>
                 <div className='validation-message'>{!(JSON.stringify(formik.errors) == '{}') ? 'Please, submit required data' : ''}</div>
             </form>
-            
+
         </div>
     )
 }
