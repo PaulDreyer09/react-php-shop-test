@@ -1,28 +1,44 @@
-import {BrowserRouter as Router, Route, Routes, } from 'react-router-dom';
-import './App.css';
+import './styles/App.css';
 import ProductList from './components/ProductList';
 import ProductAdd from './components/ProductAdd';
-// import Form from './components/form'
 import React, { useState } from 'react'
 
 const App = () => {
+  const SERVER_URL = 'https://pauljdreyer.com'
+  const API_LIST = {
+    products : '/api/scandiwebtest/product/'
+  }
+
+  const [route, setRoute] = useState('/')
+  const routes = [
+    {
+      path: '/',
+      element: <ProductList setRoute={setRoute} api_url={SERVER_URL+API_LIST.products}/>
+    },
+    {
+      path: '/add',
+      element: <ProductAdd  setRoute={setRoute} api_url={SERVER_URL+API_LIST.products}/>
+    }
+  ]
+
+  const currentComponent = <div></div>;
+  const getComponent = () => {
+    switch (route) {
+      case routes[0].path:
+        return routes[0].element;
+        break;
+      case routes[1].path:
+        return routes[1].element;
+        break;
+    }
+  }
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route index element={<ProductList />} />
-          <Route path='/addproduct' element={<ProductAdd />} />
-        </Routes>
-      </div>
-    </Router>
+    <div className="App">
+      {getComponent()}
+      <hr />
+    </div>
+
   );
 }
-// function App() {
-//   return (
-//     <div className="App">
-//       <ProductAdd/>
-//     </div>
-//   );
-// }
 
 export default App;
